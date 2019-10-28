@@ -23,11 +23,7 @@ public class FileReaderAlpha {
                 System.out.print(" ");
             }
         }
-
-
         bufferedReader.close();
         fileReader.close();
-
     }
-
 }

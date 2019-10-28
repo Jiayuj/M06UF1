@@ -28,11 +28,6 @@ public class CSVToScreen {
                 System.out.println("email: "+datos[4]);
                 System.out.println();
             }
-
-
         }
-
-
     }
-
 }

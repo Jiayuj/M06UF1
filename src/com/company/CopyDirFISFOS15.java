@@ -1,17 +1,17 @@
 package com.company;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class CopyDirFISFOS15 {
 
 //    public static void main(String[] args) throws IOException {
 //
-//        File fileC = new File("/home/dam2a/DirC");
-//        if (!fileC.exists()){
-//            fileC.mkdir();
-//        }
+//        System.out.print("Introduce un directorio: ");
+//        File file = new File(new Scanner(System.in).nextLine());
 //
-//        File file = new File("/home/dam2a/Dir");
+//        File fileC = new File(file.getAbsolutePath()+"Copy");
+//        fileC.mkdir();
 //        for (File f : file.listFiles()){
 //            FileInputStream fi = new FileInputStream(f);
 //            FileOutputStream fo = new FileOutputStream(fileC+"/"+f.getName());
@@ -20,6 +20,7 @@ public class CopyDirFISFOS15 {
 //                fo.write(b);
 //            }
 //        }
+//        System.out.println("Archiovo copia echo");
 //    }
 
 }

@@ -2,40 +2,30 @@
 //
 //import java.io.*;
 //import java.util.ArrayList;
-//import java.util.List;
 //
-//public class CSVToObjectFile18 {
+//
+//public class ObjectFileToCSV19 {
 //    public static void main(String[] args) throws IOException, ClassNotFoundException {
-//        ArrayList<User> list = new ArrayList<>();
-//        loadUser(list);
+//        ArrayList<User> list = loadUser();
 //        writeUser(list);
 //    }
-//    public static List loadUser(ArrayList list) throws IOException {
-//        FileReader fr = new FileReader("user.csv");
-//        BufferedReader br = new BufferedReader(fr);
-//        boolean exit = false;
-//        while (!exit){
-//            String line = br.readLine();
-//            if (line == null){
-//                exit=true;
-//            }else {
-//                String [] usersplit = line.split(",");
-//                list.add(new User(usersplit));
-//            }
+//    public static ArrayList loadUser() throws IOException, ClassNotFoundException {
+//        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("user.bin"));
+//        Object o = objectInputStream.readObject();
+//        ArrayList<User> list = (ArrayList<User>) o;
+//        objectInputStream.close();
+//        for (User user : list){
+//            System.out.println(user);
 //        }
 //        return list;
 //    }
-//    public static void writeUser(ArrayList list) throws IOException, ClassNotFoundException {
-//        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("user.bin"));
-//        objectOutputStream.writeObject(list);
-//        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("user.bin"));
-//        Object o = objectInputStream.readObject();
-//        ArrayList<User> list1 = (ArrayList<User>) o;
-//        for (User user : list1){
-//            System.out.println(user);
+//    public static void writeUser(ArrayList<User> list) throws IOException {
+//        FileWriter fw = new FileWriter("user1.csv",false);
+//        BufferedWriter bw = new BufferedWriter(fw);
+//        for (int i = 0; i < list.size() ; i++) {
+//            bw.write( list.get(i).getUsername()+","+list.get(i).getFirstname()+","+list.get(i).getLastname()+"\n");
 //        }
-//        objectOutputStream.close();
-//        objectInputStream.close();
+//        bw.close();
 //    }
 //
 //}
@@ -43,12 +33,12 @@
 //    private String username, firstname,lastname, email, password;
 //    private static final long serialVersionUID = 12;
 //
-//    public User(String[] strings) {
-//        this.username = strings[0];
-//        this.firstname = strings[1];
-//        this.lastname = strings[2];
-//        this.email = strings[3];
-//        this.password = strings[4];
+//    public User(String username, String firstname, String lastname, String email, String password) {
+//        this.username = username;
+//        this.firstname = firstname;
+//        this.lastname = lastname;
+//        this.email = email;
+//        this.password = password;
 //    }
 //
 //    public String getUsername() {

@@ -2,63 +2,52 @@ package com.company;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CSVToObjectFile18 {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        ArrayList<String> users = loadUsers();
-        writeUsers(users);
-    }
-    public static ArrayList loadUsers() throws IOException {
-        ArrayList<String> users = new ArrayList<String>();
+        List<String> users = new ArrayList<>();//guarda toda users
         FileReader fr = new FileReader("user.csv");
         BufferedReader br = new BufferedReader(fr);
-        boolean c = false;
-        while (!c){
+        boolean exit=false;
+        while (!exit){
             String line = br.readLine();
-            if (line==null){
-                c=true;
+            if (line == null){
+                exit=true;
             }else {
-                for (String n : line.split(",")){
-                    users.add(n);
-                }
+                List<String> s = loadUser(line);//guarda user de linea.
+                users.addAll(s);
+                writeUser(s);
             }
         }
-        return users;
     }
-    public static void writeUsers(ArrayList arrayList) throws IOException, ClassNotFoundException {
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("person.bin"));
-        String a = (String) arrayList.get(0);
-        String s = (String) arrayList.get(1);
-        String d = (String) arrayList.get(2);
-        String f = (String) arrayList.get(3);
-        String g = (String) arrayList.get(4);
-        User user = new User(a,s,d,f,g);
+    public static List loadUser(String line) throws IOException {
+        List arrayList = new ArrayList();
+        String[]user = line.split(",");
+        for (int i = 0; i < user.length; i++) {
+            arrayList.add(user[i]);
+        }
+        return arrayList;
+    }
+    public static void writeUser(List list) throws IOException, ClassNotFoundException {
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("user.bin"));
+        User user = new User((String) list.get(0),(String) list.get(1),(String) list.get(2),(String) list.get(3),(String) list.get(4));
         objectOutputStream.writeObject(user);
-
-        a = (String) arrayList.get(5);
-        s = (String) arrayList.get(6);
-        d = (String) arrayList.get(7);
-        f = (String) arrayList.get(8);
-        g = (String) arrayList.get(9);
-        User user2 = new User(a,s,d,f,g);
-        objectOutputStream.writeObject(user2);
         objectOutputStream.close();
-        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("person.bin"));
-        User user1 = (User) objectInputStream.readObject();
-        System.out.println(user1);
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("user.bin"));
+        User userRead = (User) objectInputStream.readObject();
+        System.out.println(userRead);
+        objectInputStream.close();
     }
 
 }
-class User implements Serializable{
-    private String username;
-    private String fistname;
-    private String lastname;
-    private String email;
-    private String password;
+class User implements Serializable {
+    private String username, firstname,lastname, email, password;
+    private final long serialversionID = 12;
 
-    public User(String username, String fistname, String lastname, String email, String password) {
+    public User(String username, String firstname, String lastname, String email, String password) {
         this.username = username;
-        this.fistname = fistname;
+        this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
@@ -72,12 +61,12 @@ class User implements Serializable{
         this.username = username;
     }
 
-    public String getFistname() {
-        return fistname;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFistname(String fistname) {
-        this.fistname = fistname;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getLastname() {
@@ -106,11 +95,12 @@ class User implements Serializable{
 
     @Override
     public String toString() {
-        return "User: " +
+        return "User{" +
                 "username='" + username + '\'' +
-                ", fistname='" + fistname + '\'' +
+                ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\''+"\n";
+                ", password='" + password + '\'' +
+                '}';
     }
 }

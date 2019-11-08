@@ -1,58 +1,65 @@
-package com.company;
-
-import java.io.*;
-import java.util.ArrayList;
-
-
+//package com.company;
+//
+//import java.io.*;
+//import java.util.ArrayList;
+//
+//
 //public class ObjectStreamExample17 {
-//    public static void main(String[] args) throws IOException, ClassNotFoundException {
-//        ArrayList<String> person = new ArrayList<String>();
+//    public static void main(String[] args) throws IOException {
 //
-//        introDades("A",18);
-//        person.add(mostraDades());
-//        introDades("B",19);
-//        person.add(mostraDades());
-//        person.forEach(n -> System.out.println(n));
-//
+//        ArrayList<Person> list= introDades();
+//        mostraDades();
 //    }
-//    public static void introDades(String n,int e) throws IOException {
+//    public static ArrayList introDades() throws IOException {
 //        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("person.bin"));
-//        Person person = new Person();
-//        person.setNom(n);
-//        person.setEdat(e);
-//        objectOutputStream.writeObject(person);
+//        ArrayList<Person> list = new ArrayList<>();
+//        for (int i = 1; list.size()<3 ; i++) {
+//            Person person = new Person();
+//            person.setNom("P"+i);
+//            person.setEdat(18+i);
+//            objectOutputStream.writeObject(person);
+//            list.add(person);
+//        }
 //        objectOutputStream.close();
+//        return list;
 //    }
-//    public static String mostraDades() throws IOException, ClassNotFoundException {
+//    public static void mostraDades() throws IOException {
 //        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("person.bin"));
-//        Person person = (Person) objectInputStream.readObject();
-//        return String.valueOf(person);
+//        try {
+//            while (true){
+//                Person personRead = (Person) objectInputStream.readObject();
+//                System.out.println(personRead);
+//            }
+//        }catch (EOFException e ){
+//            objectInputStream.close();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//}
+//
+//class Person implements Serializable {
+//    private String nom;
+//    private int edat;
+//
+//    public String getNom() {
+//        return nom;
+//    }
+//    public void setNom(String nom) {
+//        this.nom = nom;
+//    }
+//    public int getEdat() {
+//        return edat;
+//    }
+//    public void setEdat(int edat) {
+//        this.edat = edat;
 //    }
 //
+//    @Override
+//    public String toString() {
+//        return "Person{" +
+//                "nom='" + nom + '\'' +
+//                ", edat=" + edat +
+//                '}';
+//    }
 //}
-
-class Person implements Serializable {
-    private String nom;
-    private int edat;
-
-    public String getNom() {
-        return nom;
-    }
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-    public int getEdat() {
-        return edat;
-    }
-    public void setEdat(int edat) {
-        this.edat = edat;
-    }
-
-    @Override
-    public String toString() {
-        return "Person{" +
-                "nom='" + nom + '\'' +
-                ", edat=" + edat +
-                '}';
-    }
-}

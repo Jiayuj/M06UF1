@@ -5,10 +5,10 @@
 //import java.util.List;
 //
 //public class CSVToObjectFile18 {
-//    public static void main(String[] args) throws IOException, ClassNotFoundException {
-//        ArrayList<User> list = new ArrayList<>();
-//        loadUser(list);
-//        writeUser(list);
+//    public static void main(String[] args) throws IOException {
+//        ArrayList<User> userslist = new ArrayList<>();
+//        loadUser(userslist);
+//        writeUser(userslist);
 //    }
 //    public static List loadUser(ArrayList list) throws IOException {
 //        FileReader fr = new FileReader("user.csv");
@@ -19,36 +19,46 @@
 //            if (line == null){
 //                exit=true;
 //            }else {
-//                String [] usersplit = line.split(",");
-//                list.add(new User(usersplit));
+//                String[]strings = line.split(",");
+//                for (int i = 0; i <strings.length ; i++) {
+//                    list.add(strings[i]);
+//                }
 //            }
 //        }
 //        return list;
 //    }
-//    public static void writeUser(ArrayList list) throws IOException, ClassNotFoundException {
+//    public static void writeUser(ArrayList list) throws IOException {
 //        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("user.bin"));
-//        objectOutputStream.writeObject(list);
-//        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("user.bin"));
-//        Object o = objectInputStream.readObject();
-//        ArrayList<User> list1 = (ArrayList<User>) o;
-//        for (User user : list1){
-//            System.out.println(user);
+//
+//        for (int i = 0; i < list.size(); i++) {
+//            User user = new User((String) list.get(i),(String) list.get(i+=1),(String) list.get(i+=1),(String) list.get(i+=1),(String) list.get(i+=1));
+//            objectOutputStream.writeObject(user);
 //        }
 //        objectOutputStream.close();
-//        objectInputStream.close();
-//    }
 //
+//        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("user.bin"));
+//        try {
+//            while (true){
+//                User userRead = (User) objectInputStream.readObject();
+//                System.out.println(userRead);
+//            }
+//        }catch (EOFException e ){
+//            objectInputStream.close();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//    }
 //}
 //class User implements Serializable {
 //    private String username, firstname,lastname, email, password;
 //    private static final long serialVersionUID = 12;
 //
-//    public User(String[] strings) {
-//        this.username = strings[0];
-//        this.firstname = strings[1];
-//        this.lastname = strings[2];
-//        this.email = strings[3];
-//        this.password = strings[4];
+//    public User(String username, String firstname, String lastname, String email, String password) {
+//        this.username = username;
+//        this.firstname = firstname;
+//        this.lastname = lastname;
+//        this.email = email;
+//        this.password = password;
 //    }
 //
 //    public String getUsername() {

@@ -6,9 +6,9 @@ public class CopyFilesBin14 {
 
 //    public static void main(String[] args) throws IOException {
 //
-//        FileInputStream file = new FileInputStream("/home/dam2a/Baixades/1.png");
+//        FileInputStream file = new FileInputStream("1.png");//falta ruta
 //        DataInputStream data = new DataInputStream(file);
-//        FileOutputStream fileO = new FileOutputStream("/home/dam2a/Baixades/2.png");
+//        FileOutputStream fileO = new FileOutputStream("2.png");//falta ruta
 //        DataOutputStream dataO = new DataOutputStream(fileO);
 //        int b = 0;
 //        while ((b = data.read()) != -1){
@@ -18,8 +18,5 @@ public class CopyFilesBin14 {
 //        data.close();
 //        fileO.close();
 //        file.close();
-//
 //    }
-
-
 }

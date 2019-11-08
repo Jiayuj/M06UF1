@@ -1,11 +1,13 @@
 package com.company;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class FileTypes16 {
 //    public static void main(String[] args) throws IOException {
-//
-//        FileOutputStream fileO = new FileOutputStream("data.txt");
+//        System.out.print("Introduce un directorio: ");
+//        String ruta = new Scanner(System.in).nextLine()+"/"+"data.txt";
+//        FileOutputStream fileO = new FileOutputStream(ruta);
 //        DataOutputStream dataO = new DataOutputStream(fileO);
 //
 //        dataO.writeBytes("1");
@@ -20,7 +22,7 @@ public class FileTypes16 {
 //        dataO.close();
 //        fileO.close();
 //
-//        FileReader fr = new FileReader("data.txt");
+//        FileReader fr = new FileReader(ruta);
 //        BufferedReader br = new BufferedReader(fr);
 //
 //        int b = 0;
@@ -33,7 +35,7 @@ public class FileTypes16 {
 //
 //        System.out.println("----------");
 //
-//        FileInputStream fileI = new FileInputStream("data.txt");
+//        FileInputStream fileI = new FileInputStream(ruta);
 //        DataInputStream dataI = new DataInputStream(fileI);
 //
 //        System.out.println(dataI.readByte());
@@ -47,6 +49,5 @@ public class FileTypes16 {
 //
 //        dataI.close();
 //        fileI.close();
-//
 //    }
 }

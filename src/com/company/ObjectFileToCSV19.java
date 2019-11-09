@@ -3,8 +3,6 @@
 //import java.io.*;
 //import java.util.ArrayList;
 //
-//
-//
 //public class ObjectFileToCSV19 {
 //   public static void main(String[] args) throws IOException {
 //       ArrayList<User> userslist = new ArrayList<>();

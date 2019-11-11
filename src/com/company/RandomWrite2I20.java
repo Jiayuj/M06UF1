@@ -1,20 +1,28 @@
 package com.company;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class RandomWrite2I20 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ArrayList<Departament> list = new ArrayList<>();
-        for (int i = 0; i <9 ; i++) {
-            String s="";
-            for (int j = 0; j < 10; j++) {
-                char c = (char) (new Random().nextInt(25)+65);
-                s+=c;
-            }
-            list.add(new Departament((i+1)*10,s));
+        int i=list.size();
+        writeDepartament(list,i);
+    }
+    public static void writeDepartament (ArrayList list,int i) throws IOException {
+        FileWriter fw = new FileWriter("departament.txt");
+        BufferedWriter bw = new BufferedWriter(fw);
+
+        String s="";
+        for (int j = 0; j < 10; j++) {
+            char c = (char) (new Random().nextInt(25)+65);
+            s+=c;
         }
-        System.out.println(list);
+        list.add(new Departament((i+1)*10,s));
+        bw.write(String.valueOf(new Departament((i+1)*10,s)));
     }
 
 }

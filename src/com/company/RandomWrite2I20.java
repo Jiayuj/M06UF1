@@ -1,12 +1,18 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class RandomWrite2I20 {
     public static void main(String[] args) {
         ArrayList<Departament> list = new ArrayList<>();
         for (int i = 0; i <9 ; i++) {
-            list.add(new Departament((i+1),"dsa"));
+            String s="";
+            for (int j = 0; j < 10; j++) {
+                char c = (char) (new Random().nextInt(25)+65);
+                s+=c;
+            }
+            list.add(new Departament((i+1)*10,s));
         }
         System.out.println(list);
     }
@@ -43,6 +49,6 @@ class Departament{
         return "Departament{" +
                 "id=" + id +
                 ", nom='" + nom + '\'' +
-                '}';
+                '}'+"\n";
     }
 }
